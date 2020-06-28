@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.shenyang.R;
@@ -16,7 +17,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
-    protected Button toButton,noButton,exitButton;
+    protected Button toButton,noButton,exitButton,jumpButton;
     protected Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class MainActivity extends Activity {
         //干掉悬浮球：可以在关闭APP、注销账号等场景下使用
         SyFloatView.getInstance(mContext).close();
         System.exit(0);
+        finish();
     }
 
     @Override
@@ -102,6 +104,8 @@ public class MainActivity extends Activity {
         toButton = (Button) findViewById(R.id.to_btn);
         noButton = (Button) findViewById(R.id.no_btn);
         exitButton = (Button) findViewById(R.id.exit_app_btn);
+        jumpButton = (Button) findViewById(R.id.jump_btn);
+
 
         //来消息了，显示消息红点
         toButton.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +128,15 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 exitApp();
+            }
+        });
+
+        //跳转下一个Activity
+        jumpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,MainActivity2.class);
+                startActivity(i);
             }
         });
     }

@@ -50,4 +50,18 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
+    <Button
+        android:id="@+id/jump_btn"
+        android:layout_width="270dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="跳转到Activity2"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
 </LinearLayout>
