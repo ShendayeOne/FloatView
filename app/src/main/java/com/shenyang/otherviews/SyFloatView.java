@@ -25,7 +25,7 @@ public class SyFloatView {
 
     private static SyFloatView sFloatingLayer;
     private static final String TAG = "SyFloatView";
-    public static boolean isShowBall = false;
+    public static boolean IS_SHOW_BALL = false;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams,halfPop_mLayoutParams;
     private Context mContext;
@@ -182,10 +182,10 @@ public class SyFloatView {
      * 创建悬浮球并显示出来
      */
     public void show() {
-        if (!isShowBall) {
+        if (!IS_SHOW_BALL) {
             mGetTokenRunnable = new GetTokenRunnable(((Activity)mContext));
             mHandler.postDelayed(mGetTokenRunnable, 500);
-            isShowBall = true;
+            IS_SHOW_BALL = true;
         }
     }
 
@@ -194,12 +194,10 @@ public class SyFloatView {
      */
     public void close() {
         try {
-            if (isShowBall) {
+            if (IS_SHOW_BALL) {
                 mWindowManager.removeViewImmediate(mPopView);
-                isShowBall = false;
-                if (null != mListener) {
-                    mListener.onClose();
-                }
+                if (null != mListener) mListener.onClose();
+                IS_SHOW_BALL = false;
             }
         } catch (Exception e) {
             Log.d(TAG, e.toString());
@@ -267,7 +265,7 @@ public class SyFloatView {
         }
     };
     private static boolean isNearLeft = true;
-    private class AnimationTimerTask extends TimerTask {
+    class AnimationTimerTask extends TimerTask {
 
         int mStepX;
         int mDestX;
@@ -331,11 +329,11 @@ public class SyFloatView {
         try {
             mWindowManager.updateViewLayout(mPopView, halfPop_mLayoutParams);
         } catch (Exception e) {
-            Log.d(TAG, "mWindowManager.updateViewLayout 出错，e :" + e.toString());
+            Log.d(TAG, "hidePop E :" + e.toString());
         }
     }
 
-    private class GetTokenRunnable implements Runnable {
+    class GetTokenRunnable implements Runnable {
         int count = 0;
         private Activity mActivity;
 

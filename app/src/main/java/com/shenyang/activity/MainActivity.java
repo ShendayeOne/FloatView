@@ -1,13 +1,16 @@
 package com.shenyang.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.shenyang.R;
 import com.shenyang.otherviews.SyFloatView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 
 import android.widget.Button;
@@ -58,11 +61,35 @@ public class MainActivity extends Activity {
     //关闭APP
     protected void exitApp(){
         //干掉悬浮球：可以在关闭APP、注销账号等场景下使用
-        if(SyFloatView.isShowBall);SyFloatView.getInstance(mContext).close();
+        SyFloatView.getInstance(mContext).close();
         System.exit(0);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("退出提示");
+                builder.setMessage("确认要退出APP？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() { //设置确定按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        exitApp();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() { //设置取消按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
+                builder.create().show();
+                break;
+        }
+        return true;
+    }
 
     //初始化
     protected void initVariables() {
