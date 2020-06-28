@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <FrameLayout
+        android:id="@+id/nb_sdk_bar_fl"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:addStatesFromChildren="true"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/pop"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/sy_ball"/>
+
+        <ImageView
+            android:id="@+id/barRed"
+            style="@style/style_sy_ball_image" />
+    </FrameLayout>
+
+</RelativeLayout>
